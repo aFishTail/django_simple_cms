@@ -1,0 +1,114 @@
+.layout .logo-img {
+  width: 30px;
+  height: 30px;
+  display: inline;
+}
+.layout .navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 50px;
+}
+.layout .navbar-default {
+  background-color: #fff;
+}
+.layout .navbar-right {
+  background: #bf9f64;
+}
+.layout .navbar-default .navbar-nav > li > a,
+.layout .navbar-default .navbar-nav > li > a:hover {
+  color: #fff;
+}
+.layout .navbar-default .navbar-nav > .open > a,
+.layout .navbar-default .navbar-nav > .open > a:focus,
+.layout .navbar-default .navbar-nav > .open > a:hover {
+  background-color: #bf9f64;
+}
+.layout .nav .open > a,
+.nav .open > a:focus,
+.nav .open > a:hover {
+  color: #fff;
+}
+
+/* 关于我们 */
+.layout .about__title {
+  font-size: 30px;
+  font-weight: 600;
+}
+.about__desc__img {
+  float: left;
+  max-height: 200px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.about__desc > span {
+  word-wrap: break-word;
+}
+
+/* 产品介绍 */
+.product__top__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.product__wrap__title {
+  font-size: 24px;
+  font-weight: 600;
+}
+.product__wrap__more {
+  cursor: pointer;
+}
+.product__wrap img {
+  /* width: 150px;
+    height: 150px; */
+}
+.product__box a {
+  text-decoration: none;
+}
+.product__box span {
+  color: #333;
+  font-size: 1.5rem;
+}
+.product__box__name{
+    display: block;
+    margin: 1rem 0;
+}
+.case__box img {
+  float: left;
+  max-height: 200px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  
+}
+.case__box span {
+  word-wrap: break-word;
+}
+footer {
+    /* position: fixed;
+    bottom: 0;
+    width: 100%; */
+}
+footer .link-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+}
+footer .link-wrap ul{
+    text-align: center;
+    display: flex;
+}
+footer .link-wrap ul a{
+    color: inherit;
+}
+footer .link-wrap ul li {
+    list-style: none;
+    padding: 0 1.5rem;
+}
+footer .archival-wrap{
+    text-align: center;
+    padding: 1rem;
+}

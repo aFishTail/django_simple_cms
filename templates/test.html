@@ -1,0 +1,7 @@
+{% for p in page %}
+<p>{{p.name}}</p>
+{{p.content | safe}}
+<a class="item" href="https://www.baidu.com/" target="_self">
+  <img src='/media/{{p.pic}}' alt="" />
+</a>
+{% endfor %}
