@@ -1,98 +1,102 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-        <!-- 主体内容 start -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="about">
-                        <p class="text-center about__title">关于我们</p>
-                        <p class="text-center text-uppercase about__title primary-color">about us</p>
-                        <div class="about__desc">
-                            <img class="img-responsive about__desc__img" src="./img/about/about-1.jpg" alt="">
-                            <span>萌芽时期在公司出现以前，个人独资企业是最典型的企业形式；与独资企业并存的是各种合伙组织，当时的合伙组织中最典型的就是家族经营团体。在公司产生以前，合伙组织都没有取得法人的地位，但是却有其他的一些法人团体出现。这种情况最早可以追溯至古罗马时期。在古罗马，国家、地方自治团体、寺院等宗...</span>
-                        </div>
+    <!-- 主体内容 start -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="about">
+                    {#                    <p class="text-center about__title">关于我们</p>#}
+                    {#                    <p class="text-center text-uppercase about__title primary-color">about us</p>#}
+                    <div class="about__desc">
+                        {{ about.content | safe }}
                     </div>
                 </div>
             </div>
-            <div class="row bg margin-h-2">
-                <!-- 产品展示 start -->
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="product__wrap">
-                        <div class="product__top__wrap">
-                            <span class="product__wrap__title">产品展示</span>
+        </div>
+        <div class="row bg margin-h-2">
+            <!-- 产品展示 start -->
+            <div class="col-md-8 offset-md-2">
+                <div class="product__wrap">
+                    <div class="product__top__wrap">
+                        <span class="product__wrap__title">产品展示</span>
+                        <a href="{% url 'product_list' %}">
                             <span class="product__wrap__more">查看更多</span>
-                        </div>
-                        <!-- <div class="product__content__wrap"></div> -->
-                        <div class="row">
-                            <div class="col-md-6 col-md-3">
-                                <div class="product__box">
-                                    <a href="./product_detail.html">
-                                        <img class="img-responsive" src={%static './img/product/1-200910112S3W4.jpg'%} alt="">
-                                    </a>
-                                    <a href="./product_detail.html">
-                                        <strong>
-                                            <span class="product__box__name">产品007</span>
-                                        </strong>
-                                    </a>
-                                    <div class="product__box__price">
-                                        <span>最新价格</span>
-                                        <span>88</span>
-                                        <a href="#">
-                                            <span class="product__box__price--btn pull-right">查看报价</span>
-                                        </a>
+                        </a>
+                    </div>
+                    <!-- <div class="product__content__wrap"></div> -->
+                    <div class="row">
+                        {% for product in  product_list %}
+                            <div class="col-md-3">
+                                <div class="card my-2 shadow-sm">
+                                    <img src='{{ MEDIA_URL }}{{ product.pic }}' class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ product.name }}</h5>
+                                        <p class="card-text">{{ product.intro }}</p>
+                                        <div>
+                                            <span>最低价：</span>
+                                            <span>{{ product.price }}</span>
+                                        </div>
+                                        {% comment %} <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary stretched-link">查看简介</a> {% endcomment %}
+{#                                        <a href="{% url 'product_detail' product.pk %}" class="stretched-link"></a>#}
+                                        <a href="{% url 'product_detail' product.pk %}" class="card-link">详细介绍</a>
+                                        <a href="{% url 'product_detail' product.pk %}" class="card-link">详细报价</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {% empty %}
+                            暂无数据...
+                        {% endfor %}
                     </div>
                 </div>
-                <!-- 产品展示 end -->
-                <!-- 案例展示 start -->
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="case__wrap">
-                        <div class="product__top__wrap">
-                            <span class="product__wrap__title">案例展示</span>
-                            <a href="./case.html"> <span class="product__wrap__more">查看更多</span></a>
-                        </div>
-                        <div class="case__box">
-                            <a href="./case_detail.html">
-                                <h3>这是案例的标题</h3>
-                            </a>
-                            <img class="img-responsive img-text-around" src={%static './img/case/case-1.jpg'%} alt="">
-                            <span>案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术</span>
-                            <span>案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术</span>
-                            <span>案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术</span>
-                            <span>案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术，案例信息信息数据技术</span>
-                        </div>
+            </div>
+            <!-- 产品展示 end -->
+            <!-- 案例展示 start -->
+            <div class="col-md-8 offset-md-2">
+                <div class="case__wrap">
+                    <div class="product__top__wrap">
+                        <span class="product__wrap__title">案例展示</span>
+                        {#                        <a href="{% url 'case_index' %}"> <span class="product__wrap__more">查看更多</span></a>#}
                     </div>
-                </div>
-                <!-- 案例展示 end -->
-                <!-- 新闻中心 start -->
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="news__wrap">
-                        <div class="product__top__wrap">
-                            <span class="product__wrap__title">新闻中心</span>
-                            </span>
-                            <span class="product__wrap__more">查看更多</span>
-                        </div>
-                        <div class="news__box">
-                            <a href="#">
-                                <h3>这是一篇新闻的标题</h3>
-                            </a>
-                            <img class="img-responsive img-text-around" src={static './img/news/news-1.jpg'} alt="">
-                            <span>不全的新闻的内容睡觉睡觉睡觉收拾了。。。不全的新闻的内容睡觉睡觉睡觉收拾了。。。不全的新闻的内容睡觉睡觉睡觉收拾了。。。
-                                不全的新闻的内容睡觉睡觉睡觉收拾了。。。不全的新闻的内容睡觉睡觉睡觉收拾了。。。不全的新闻的内容睡觉睡觉睡觉收拾了。。。
-                                不全的新闻的内容睡觉睡觉睡觉收拾了。。。不全的新闻的内容睡觉睡觉睡觉收拾了。。。不全的新闻的内容睡觉睡觉睡觉收拾了。。。
-                            </span>
-                            <div>
-                                <button type="button" class="btn btn-default pull-right">查看更多</button>
+                    {% for case in case_list %}
+                        <div class="row">
+                            <div class="case__box">
+                                <a href="{% url 'case_detail' case.id %}">
+                                    <h4>{{ case.title }}</h4>
+                                </a>
+                                <img class="img-responsive img-text-around" src="{{ MEDIA_URL }}{{ case.pic }}" alt="">
+                                {{ case.content | safe | truncatechars_html:100 }}
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
-                <!-- 新闻中心 end -->
             </div>
+            <!-- 案例展示 end -->
+            <!-- 新闻中心 start -->
+            <div class="col-md-8 offset-md-2">
+                <div class="news__wrap">
+                    <div class="product__top__wrap">
+                        <span class="product__wrap__title">新闻中心</span>
+                        </span>
+                        {#                        <span class="product__wrap__more">查看更多</span>#}
+                    </div>
+                    {% for news in news_list %}
+                        <div class="row">
+                            <div class="news__box">
+                                <a href="{% url 'news_detail' news.id %}">
+                                    <h4>{{ news.title }}</h4>
+                                </a>
+                                <img class="img-responsive img-text-around" src='{{ MEDIA_URL }}{{ news.pic }}' alt="">
+                                {{ news.content | safe | truncatechars_html:200 }}
+                            </div>
+                        </div>
+                    {% empty %}
+                        暂无数据...
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- 新闻中心 end -->
         </div>
-        <!-- 主体内容结束 -->
+    </div>
+    <!-- 主体内容结束 -->
 {% endblock content %}

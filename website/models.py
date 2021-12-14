@@ -128,6 +128,32 @@ class About(BaseModel):
         verbose_name_plural = verbose_name
         get_latest_by = 'id'
 
+class Case(BaseModel):
+    """案例展示"""
+
+    STATUS_CHOICE = (
+        ('0', '草稿'),
+        ('1', '发布'),
+    )
+
+    title = models.CharField('标题', max_length=10, unique=True)
+
+    pic = models.ImageField(verbose_name='简介图片', upload_to='news')
+
+    content = RichTextUploadingField('正文')
+
+    status = models.CharField('状态', max_length=1, choices=STATUS_CHOICE)
+
+    def __str__(self) -> str:
+        return self.title
+
+    class Meta:
+        # ordering = ['-order', 'pub_time']
+        verbose_name = '案例展示'
+        verbose_name_plural = verbose_name
+        get_latest_by = 'id'
+
+
 
 class News(BaseModel):
     """新闻"""
@@ -139,7 +165,6 @@ class News(BaseModel):
 
     title = models.CharField('标题', max_length=10, unique=True)
 
-
     pic = models.ImageField(verbose_name='简介图片', upload_to='news')
 
     content = RichTextUploadingField('正文')
@@ -147,10 +172,10 @@ class News(BaseModel):
     status = models.CharField('状态', max_length=1, choices=STATUS_CHOICE)
 
     def __str__(self) -> str:
-        return self.name
+        return self.title
 
     class Meta:
-        # ordering = ['-order', 'pub_time']
+        ordering = ['-created_time']
         verbose_name = '新闻'
         verbose_name_plural = verbose_name
         get_latest_by = 'id'

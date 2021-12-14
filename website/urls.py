@@ -6,10 +6,12 @@ urlpatterns = [
     # re_path(
     #     r'^products/list/$', product, name='product_list'
     # ),
-    path(
-        'products/list/<int:category_id>/<int:page_num>/', product_list, name='product_list'
-    ),
-    path(
-        'seed_product', seed_product, name='seed-product'
-    ),
+    path('products/list', product_list, name='product_list'),
+    path('products/<int:id>', product_detail, name='product_detail'),
+    path('case', case_index, name='case_index'),
+    path('case/<int:id>', case_detail, name='case_detail'),
+    path('news/list', news_list, name='news_list'),
+    path('news/<int:id>', news_detail, name='news_detail'),
+    path('about', about_view, name='about_view'),
+    # path('seed_product', seed_product, name='seed-product'),
 ]
