@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- 主体内容 start -->
+    <div class="container-fluid">
+        <div class="row margin-h-2">
+            {#            <div class="col-md-2">#}
+            {#                <h4>产品分类</h4>#}
+            {#                <ul class="nav nav-pills flex-column" id="categoryTab" role="tablist">#}
+            {#                    {% for category in categories %}#}
+            {#                        {% if category.id == product.category.id %}#}
+            {#                            <li class="nav-item" role="presentation">#}
+            {#                                <a class="nav-link active" data="{{ category.id }}"#}
+            {#                                   href="{% url 'product_list' %}?category_id={{ category.id }}">{{ category.name }}</a>#}
+            {#                            </li>#}
+            {#                        {% else %}#}
+            {#                            <li class="nav-item" role="presentation">#}
+            {#                                <a class="nav-link" data="{{ category.id }}"#}
+            {#                                   href="{% url 'product_list' %}?category_id={{ category.id }}">{{ category.name }}</a>#}
+            {#                            </li>#}
+            {#                        {% endif %}#}
+            {#                    {% endfor %}#}
+            {#                </ul>#}
+            {#            </div>#}
+            <div class="col-md-8 offset-2">
+                <div class="product__wrap">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">首页</a></li>
+                            <li class="breadcrumb-item"><a href="/">产品中心</a></li>
+                            <li class="breadcrumb-item active">{{ product.name }}</li>
+                        </ol>
+                    </nav>
+                    <div class="d-flex align-items-center pt-2 pb-4">
+                        <span class="fs-4 text-success">{{ product.name }}最新详细报价</span>
+                        <a class="btn btn-success btn-sm ms-2"
+                                href="{% url 'product_detail' product.id %}"> 查看介绍
+                        </a>
+                    </div>
+                    <table class="table table-striped  table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">名称</th>
+                            <th scope="col">高度</th>
+                            <th scope="col">米径</th>
+                            <th scope="col">价格</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for row in table_data %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ row.name }}</td>
+                                <td>{{ row.height }}</td>
+                                <td>{{ row.diameter }}</td>
+                                <td>{{ row.price }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 主体内容结束 -->
+{% endblock %}

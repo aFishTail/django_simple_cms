@@ -1,3 +1,6 @@
+.content-wrap{
+    min-height: calc(100vh - 200px);
+}
 .layout .logo-img {
   width: 30px;
   height: 30px;

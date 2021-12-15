@@ -42,7 +42,13 @@ def product_detail(request, id):
     product = Product.objects.get(pk=id)
     categories = Category.objects.filter(status='1')
     return render(request, 'product_detail.html', locals())
-    pass
+
+def product_specs(request, id):
+    """产品明细"""
+    product = Product.objects.get(pk=id)
+    categories = Category.objects.filter(status='1')
+    table_data = product.product_specs.all()
+    return render(request, 'product_specs.html', locals())
 
 
 

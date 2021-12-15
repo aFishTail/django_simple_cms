@@ -64,7 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media'
+                'django.template.context_processors.media',
+                'website.context_processors.seo_processor',
             ],
         },
     },
@@ -75,33 +76,33 @@ WSGI_APPLICATION = 'django_mp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.environ.get('DJANGO_MYSQL_DATABASE') or 'django_mp',
-#         'USER': os.environ.get('DJANGO_MYSQL_USER') or 'root',
-#         'PASSWORD': os.environ.get('DJANGO_MYSQL_PASSWORD') or '123456',
-#         'HOST': os.environ.get('DJANGO_MYSQL_HOST') or '127.0.0.1',
-#         'PORT': int(
-#             os.environ.get('DJANGO_MYSQL_PORT') or 3306),
-#         'OPTIONS': {
-#             'charset': 'utf8mb4'},
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_mp',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'USER': os.environ.get('DJANGO_MYSQL_USER') or 'root',
+        'PASSWORD': os.environ.get('DJANGO_MYSQL_PASSWORD') or '123456',
+        'HOST': os.environ.get('DJANGO_MYSQL_HOST') or '127.0.0.1',
         'PORT': int(
             os.environ.get('DJANGO_MYSQL_PORT') or 3306),
         'OPTIONS': {
             'charset': 'utf8mb4'},
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'django_mp',
+#         'USER': 'root',
+#         'PASSWORD': '123456',
+#         'HOST': '127.0.0.1',
+#         'PORT': int(
+#             os.environ.get('DJANGO_MYSQL_PORT') or 3306),
+#         'OPTIONS': {
+#             'charset': 'utf8mb4'},
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -162,6 +163,14 @@ CKEDITOR_CONFIGS = {
 CKEDITOR_ALLOW_NONIMAGE_FILES = False  #
 CKEDITOR_BROWSE_SHOW_DIRS = True  #
 CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 10800,
+        'LOCATION': 'unique-snowflake',
+    }
+}
 
 CKEDITOR_CONFIGS = {
     'default': {

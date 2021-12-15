@@ -8,6 +8,7 @@ urlpatterns = [
     # ),
     path('products/list', product_list, name='product_list'),
     path('products/<int:id>', product_detail, name='product_detail'),
+    path('products/specs/<int:id>', product_specs, name='product_specs'),
     path('case', case_index, name='case_index'),
     path('case/<int:id>', case_detail, name='case_detail'),
     path('news/list', news_list, name='news_list'),
