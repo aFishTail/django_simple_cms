@@ -3,8 +3,12 @@ from django.db.models.fields import TextField
 from django.utils.timezone import now
 from ckeditor_uploader.fields import RichTextUploadingField
 
-
 # Create your models here.
+
+STATUS_CHOICE = (
+    ('0', '不发布'),
+    ('1', '发布')
+)
 
 
 class BaseModel(models.Model):
@@ -19,24 +23,16 @@ class BaseModel(models.Model):
 class Product(BaseModel):
     """产品"""
 
-    STATUS_CHOICE = (
-        ('0', '不发布'),
-        ('1', '发布')
-    )
-
     name = models.CharField('产品名称', max_length=36, unique=True)
     intro = models.CharField('产品介绍', max_length=200)
     content = RichTextUploadingField('正文')
     pic = models.ImageField('图片', upload_to='product')
-    price = models.IntegerField('价格', default=0)
+    pub_time = models.DateTimeField('发布时间', default=now)
     order = models.IntegerField('排序,数字越大越靠前', default=0)
-    height = models.IntegerField('高度（厘米）', default=100)
-    diameter = models.IntegerField('直径（厘米）', default=10)
     status = models.CharField(
         '状态', max_length=1, choices=STATUS_CHOICE, default='1')
-    pub_time = models.DateTimeField('发布时间', default=now)
     category = models.ForeignKey(
-        'Category', on_delete=models.CASCADE, null=True)
+        'Category', verbose_name='类别', on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
         return self.name
@@ -50,17 +46,13 @@ class Product(BaseModel):
 
 class ProductSpecs(BaseModel):
     """产品规格"""
-    STATUS_CHOICE = (
-        ('0', '不发布'),
-        ('1', '发布')
-    )
     name = models.CharField('产品名称', max_length=36, unique=False)
     height = models.IntegerField('高度（厘米）', default=100)
     diameter = models.IntegerField('直径（厘米）', default=10)
-    price = models.IntegerField('价格', default=0)
+    price = models.DecimalField(verbose_name='价格', max_digits=7, decimal_places=2, default=0)
     status = models.CharField(
         '状态', max_length=1, choices=STATUS_CHOICE, default='1')
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='product_specs')
+    product = models.ForeignKey('Product', verbose_name='产品名称', on_delete=models.CASCADE, related_name='product_specs')
 
     class Meta:
         verbose_name = '产品规格'
@@ -72,10 +64,6 @@ class ProductSpecs(BaseModel):
 
 class Category(BaseModel):
     """产品类别"""
-    STATUS_CHOICE = (
-        ('0', '不发布'),
-        ('1', '发布')
-    )
     name = models.CharField('类别名称', max_length=36, unique=True)
 
     description = models.CharField('类别介绍', max_length=200)
@@ -96,10 +84,6 @@ class Category(BaseModel):
 class Banner(BaseModel):
     """Banner图"""
 
-    STATUS_CHOICE = (
-        ('0', '不显示'),
-        ('1', '显示'),
-    )
     name = models.CharField('图片名称', max_length=36, unique=True)
 
     pic = models.ImageField(verbose_name='图片地址', upload_to='banner')
@@ -122,10 +106,6 @@ class Banner(BaseModel):
 class About(BaseModel):
     """关于"""
 
-    STATUS_CHOICE = (
-        ('0', '不生效'),
-        ('1', '生效'),
-    )
     CATEGORY_CHOICE = (
         ('about', '关于我们'),
         ('concat', '联系我们'),
@@ -155,11 +135,6 @@ class About(BaseModel):
 class Case(BaseModel):
     """案例展示"""
 
-    STATUS_CHOICE = (
-        ('0', '草稿'),
-        ('1', '发布'),
-    )
-
     title = models.CharField('标题', max_length=10, unique=True)
 
     pic = models.ImageField(verbose_name='简介图片', upload_to='news')
@@ -180,11 +155,6 @@ class Case(BaseModel):
 
 class News(BaseModel):
     """新闻"""
-
-    STATUS_CHOICE = (
-        ('0', '草稿'),
-        ('1', '发布'),
-    )
 
     title = models.CharField('标题', max_length=10, unique=True)
 
@@ -209,12 +179,12 @@ class Links(BaseModel):
 
     name = models.CharField('链接名称', max_length=30, unique=True)
     link = models.URLField('链接地址')
-    order = models.IntegerField('排序')
+    order = models.IntegerField('排序', default=0)
     status = models.BooleanField(
         '是否显示', default=True, blank=False, null=False)
 
     class Meta:
-        ordering = ['order']
+        ordering = ['-order']
         verbose_name = '友情链接'
         verbose_name_plural = verbose_name
 
