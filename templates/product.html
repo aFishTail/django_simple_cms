@@ -6,19 +6,12 @@
             <div class="col-md-2">
                 <h4>产品分类</h4>
                 <ul class="nav nav-pills flex-column" id="categoryTab" role="tablist">
-                    {% for category in categories %}
-                        {% if category.id == category_id %}
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link active" data="{{ category.id }}"
-                                   href="{% url 'product_list' %}?category_id={{ category.id }}">{{ category.name }}</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" data="{{ category.id }}"
-                                   href="{% url 'product_list' %}?category_id={{ category.id }}">{{ category.name }}</a>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
+                {% for category in categories %}
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link {% if category.id == category_id %} active{% endif%}" data="{{ category.id }}"
+                                href="{% url 'product_list' %}?category_id={{ category.id }}">{{ category.name }}</a>
+                        </li>
+                {% endfor %}
                 </ul>
             </div>
             <div class="col-md-8">

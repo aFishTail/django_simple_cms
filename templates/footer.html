@@ -1,0 +1,16 @@
+{% load static %}
+<footer>
+    <div class="link-wrap">
+        <span>友情链接</span>
+        <ul>
+            {% for link in link_list %}
+                <li><a href="{{ link.href }}">{{ link.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="archival-wrap">
+        <span class="archival-wrap__text">{{ settings.copyright }}</span>
+        <span>备案号：</span>
+        <a href="http://beian.miit.gov.cn/" rel="nofollow" target="_blank">{{ settings.beiancode }}</a>
+    </div>
+</footer>

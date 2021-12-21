@@ -234,6 +234,12 @@ class SiteSetting(models.Model):
         null=False,
         blank=False,
         default='')
+    copyright = models.CharField(
+        "版权信息",
+        max_length=100,
+        null=False,
+        blank=False,
+        default='')
 
     class Meta:
         verbose_name = '站点设置'
