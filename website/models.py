@@ -247,3 +247,18 @@ class SiteSetting(models.Model):
 
     def __str__(self):
         return self.sitename
+
+
+class Message(BaseModel):
+    """留言"""
+    content = models.CharField(verbose_name='留言内容', max_length=200)
+    username = models.CharField(verbose_name='留言人姓名', max_length=10)
+    mobile = models.CharField(verbose_name='手机号', max_length=11)
+    email = models.EmailField(verbose_name='邮箱地址')
+
+    class Meta:
+        verbose_name = '留言'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return '%s：%s' % (self.username, self.content)

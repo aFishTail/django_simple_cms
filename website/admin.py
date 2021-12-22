@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Banner, About, News, Case, ProductSpecs, Links, SiteSetting
+from .models import Product, Category, Banner, About, News, Case, ProductSpecs, Links, SiteSetting, Message
 from django.contrib import messages
 from django.utils.translation import ngettext
 
@@ -81,4 +81,8 @@ class CaseAdmin(admin.ModelAdmin):
 
 @admin.register(SiteSetting)
 class CaseAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Message)
+class Message(admin.ModelAdmin):
     pass

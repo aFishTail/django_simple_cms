@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.conf import settings
 from django.core.paginator import Paginator
+from django.views.generic.base import View
 from .models import Banner, Product, Category, About, Case, News
+from .form import MessageForm
 
 # Create your views here.
 
@@ -99,6 +101,23 @@ def seed_product(request):
         category = Category.objects.first()
         Product.objects.create(name=name, intro=intro, content=content, price=price,
                                height=height, diameter=diameter, pic=pic, status=status, category=category)
+
+class MessageView(View):
+    """留言板视图"""
+
+    def get(self, request, *args, **kwargs):
+        form = MessageForm()
+        return render(request, 'message.html', {
+            'form': form
+        })
+
+    def post(self, request):
+        form = MessageForm(request.POST)
+        print(form.is_valid())
+        print(form)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
 
 
 def seed_news(request):

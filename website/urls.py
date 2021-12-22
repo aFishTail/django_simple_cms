@@ -14,5 +14,6 @@ urlpatterns = [
     path('news/list', news_list, name='news_list'),
     path('news/<int:id>', news_detail, name='news_detail'),
     path('about', about_view, name='about_view'),
+    path('message', MessageView.as_view(), name='message'),
     # path('seed_product', seed_product, name='seed-product'),
 ]
