@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/django_mp</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="腾讯云" uuid="f11a9840-82be-4a61-a041-1c91c7ac6ba0">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://81.69.252.155:3306</jdbc-url>
+    </data-source>
   </component>
 </project>
