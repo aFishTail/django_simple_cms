@@ -3,7 +3,7 @@
 - 功能齐全
 - 代码简单（复杂的写法还不太会。。哈哈），较适合新手。
 
-本项目主要是学习Django一个月后觉得得产出点什么才进行开发的，在此感谢[DjangoBlog](https://github.com/liangliangyy/DjangoBlog)，学到了很多Django的用户。
+本项目主要是学习Django一个月后觉得得产出点什么才进行开发的，在此感谢[DjangoBlog](https://github.com/liangliangyy/DjangoBlog)，学到了很多Django的用法。
 
 **注意**
 本人是一名前端工程师，打算all in JS、TS，该项目大概率不会再维护了！
